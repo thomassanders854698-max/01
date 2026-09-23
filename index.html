@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portal de Oportunidades</title>
+  <title>Novos Caminhos</title>
+
   <style>
     :root {
-      --navy: #EDEBFF;
-      --navy-dark: #17152B;
-      --green: #8B5CF6;
-      --text: #F5F4FA;
-      --muted: #B6B2C9;
-      --line: #302B48;
-      --page: #090812;
+      --bg: #10191b;
+      --surface: #172426;
+      --primary: #e7b86b;
+      --primary-dark: #c89445;
+      --text: #f5f1e8;
+      --muted: #aeb8b5;
+      --line: #2c3b3d;
+      --soft: #dce6df;
     }
 
     * {
@@ -23,7 +25,9 @@
       margin: 0;
       min-height: 100%;
       font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at 50% 0%, #21183F 0%, #0B0913 45%, #07070D 100%);
+      background:
+        radial-gradient(circle at 50% -10%, #294044 0%, transparent 42%),
+        var(--bg);
       color: var(--text);
     }
 
@@ -38,26 +42,27 @@
       overflow: hidden;
       width: min(100%, 960px);
       min-height: calc(100vh - 28px);
-      background: rgba(18, 16, 29, 0.92);
+      background: rgba(23, 36, 38, .94);
+      border: 1px solid rgba(220, 230, 223, .08);
       border-radius: 32px;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .38);
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 120px 52px 74px;
+      padding: 112px 52px 68px;
       text-align: center;
     }
 
     .page::before {
       content: "";
       position: absolute;
-      width: 520px;
-      height: 520px;
+      width: 560px;
+      height: 560px;
       border-radius: 50%;
-      top: -300px;
+      top: -350px;
       left: 50%;
       transform: translateX(-50%);
-      background: radial-gradient(circle, rgba(139, 92, 246, .22), transparent 68%);
+      background: radial-gradient(circle, rgba(231, 184, 107, .15), transparent 68%);
       pointer-events: none;
     }
 
@@ -66,86 +71,113 @@
       z-index: 1;
     }
 
-    .lock-wrap {
-      width: 204px;
-      height: 204px;
-      position: relative;
+    .mark {
+      width: 154px;
+      height: 154px;
+      margin-bottom: 43px;
+      border: 1px solid rgba(231, 184, 107, .35);
+      border-radius: 50%;
       display: grid;
       place-items: center;
-      margin-bottom: 45px;
+      position: relative;
+      background: rgba(16, 25, 27, .48);
+      box-shadow: inset 0 0 0 10px rgba(231, 184, 107, .025);
     }
 
-    .lock-wrap svg {
-      width: 204px;
-      height: 204px;
-      overflow: visible;
+    .mark::before,
+    .mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .mark::before {
+      width: 112px;
+      height: 112px;
+      border: 2px solid var(--line);
+    }
+
+    .mark::after {
+      width: 42px;
+      height: 42px;
+      background: var(--primary);
+      box-shadow: 0 0 35px rgba(231, 184, 107, .2);
+    }
+
+    .mark span {
+      position: relative;
+      z-index: 2;
+      font-size: 27px;
+      font-weight: 700;
+      color: var(--bg);
     }
 
     .headline {
       margin: 0;
-      font-size: clamp(48px, 6vw, 78px);
-      line-height: 1.12;
+      font-size: clamp(48px, 6vw, 76px);
+      line-height: 1.08;
       letter-spacing: -2.8px;
       font-weight: 700;
-      color: var(--navy);
+      color: var(--text);
     }
 
-    .headline .green {
+    .headline .highlight {
       display: block;
-      color: var(--green);
-      margin-top: 3px;
+      color: var(--primary);
+      margin-top: 4px;
     }
 
     .subtitle {
       max-width: 650px;
-      margin: 43px auto 0;
-      font-size: clamp(22px, 2.6vw, 31px);
-      line-height: 1.48;
-      letter-spacing: -0.35px;
+      margin: 40px auto 0;
+      font-size: clamp(21px, 2.5vw, 29px);
+      line-height: 1.5;
+      letter-spacing: -.3px;
       color: var(--muted);
       font-weight: 400;
     }
 
     .small-divider {
-      width: 106px;
+      width: 86px;
       height: 3px;
-      background: #302B48;
+      background: var(--line);
       border-radius: 10px;
-      margin: 68px 0 72px;
+      margin: 63px 0 67px;
     }
 
     .instruction {
       margin: 0;
       max-width: 650px;
-      font-size: clamp(23px, 2.7vw, 31px);
+      font-size: clamp(22px, 2.6vw, 29px);
       line-height: 1.45;
-      color: #E4E1EF;
-      letter-spacing: -0.45px;
+      color: var(--soft);
+      letter-spacing: -.4px;
     }
 
     .access-button {
-      margin-top: 57px;
-      width: min(100%, 552px);
-      min-height: 116px;
-      border: 0;
-      border-radius: 60px;
-      background: linear-gradient(105deg, #7C3AED, #06B6D4);
-      color: white;
+      margin-top: 53px;
+      width: min(100%, 540px);
+      min-height: 108px;
+      border: 1px solid rgba(231, 184, 107, .35);
+      border-radius: 54px;
+      background: linear-gradient(105deg, #d8a85b, #b98438);
+      color: #17201f;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 38px;
-      font-size: clamp(24px, 3vw, 35px);
+      gap: 29px;
+      font-size: clamp(23px, 3vw, 33px);
       font-weight: 700;
-      letter-spacing: -0.7px;
+      letter-spacing: -.6px;
       cursor: pointer;
-      box-shadow: 0 18px 40px rgba(91, 33, 182, 0.28);
-      transition: transform .18s ease, box-shadow .18s ease;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .25);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
     }
 
     .access-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 22px 48px rgba(6, 182, 212, 0.22);
+      filter: brightness(1.05);
+      box-shadow: 0 23px 48px rgba(0, 0, 0, .32);
     }
 
     .access-button:active {
@@ -153,46 +185,45 @@
     }
 
     .access-button:focus-visible {
-      outline: 4px solid rgba(34, 211, 238, .28);
+      outline: 4px solid rgba(231, 184, 107, .25);
       outline-offset: 5px;
     }
 
-    .shield {
-      width: 49px;
-      height: 57px;
-      flex: 0 0 auto;
+    .arrow {
+      width: 45px;
+      height: 45px;
+      border: 2px solid rgba(23, 32, 31, .45);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      line-height: 1;
     }
 
     .footer {
       width: min(100%, 750px);
-      border-top: 2px solid var(--line);
-      margin-top: 136px;
-      padding-top: 46px;
+      border-top: 1px solid var(--line);
+      margin-top: 124px;
+      padding-top: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 47px;
-      color: #9893AA;
-      font-size: clamp(19px, 2.2vw, 27px);
+      gap: 43px;
+      color: #879390;
+      font-size: clamp(17px, 2vw, 23px);
     }
 
     .footer-link {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 14px;
       white-space: nowrap;
     }
 
     .footer-divider {
-      height: 48px;
-      width: 2px;
-      background: #302B48;
-    }
-
-    .footer svg {
-      width: 34px;
-      height: 34px;
-      flex: 0 0 auto;
+      height: 38px;
+      width: 1px;
+      background: var(--line);
     }
 
     @media (max-width: 700px) {
@@ -201,189 +232,128 @@
       }
 
       .page {
-      position: relative;
-      overflow: hidden;
         min-height: 100vh;
         border-radius: 0;
-        background: rgba(10, 9, 17, 0.96);
-        padding: 85px 24px 45px;
+        padding: 76px 24px 43px;
       }
 
-      .page::before {
-      content: "";
-      position: absolute;
-      width: 520px;
-      height: 520px;
-      border-radius: 50%;
-      top: -300px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: radial-gradient(circle, rgba(139, 92, 246, .22), transparent 68%);
-      pointer-events: none;
-    }
-
-    .page > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .lock-wrap {
-        width: 145px;
-        height: 145px;
+      .mark {
+        width: 132px;
+        height: 132px;
         margin-bottom: 32px;
       }
 
-      .lock-wrap svg {
-        width: 145px;
-        height: 145px;
+      .mark::before {
+        width: 96px;
+        height: 96px;
+      }
+
+      .subtitle {
+        margin-top: 29px;
+      }
+
+      .small-divider {
+        margin: 45px 0 47px;
+      }
+
+      .instruction {
+        font-size: 21px;
+      }
+
+      .access-button {
+        min-height: 82px;
+        margin-top: 37px;
+        gap: 19px;
+        font-size: 22px;
+      }
+
+      .arrow {
+        width: 37px;
+        height: 37px;
+        font-size: 20px;
+      }
+
+      .footer {
+        margin-top: 82px;
+        padding-top: 28px;
+        gap: 15px;
+        font-size: 15px;
+      }
+
+      .footer-link {
+        gap: 7px;
+      }
+
+      .footer-divider {
+        height: 29px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .page {
+        padding-left: 18px;
+        padding-right: 18px;
       }
 
       .headline {
         letter-spacing: -1.8px;
       }
 
-      .subtitle {
-        margin-top: 30px;
-      }
-
-      .small-divider {
-        margin: 48px 0 50px;
-      }
-
-      .instruction {
-        font-size: 22px;
-      }
-
-      .access-button {
-        min-height: 82px;
-        margin-top: 40px;
-        gap: 20px;
-        font-size: 23px;
-      }
-
-      .shield {
-        width: 34px;
-        height: 40px;
-      }
-
       .footer {
-        margin-top: 90px;
-        padding-top: 30px;
-        gap: 17px;
-        font-size: 16px;
-      }
-
-      .footer-link {
-        gap: 9px;
-      }
-
-      .footer-divider {
-        height: 32px;
-      }
-
-      .footer svg {
-        width: 24px;
-        height: 24px;
-      }
-    }
-
-    @media (max-width: 390px) {
-      .page {
-      position: relative;
-      overflow: hidden;
-        padding-left: 18px;
-        padding-right: 18px;
-      }
-
-      .footer {
-        gap: 11px;
-      }
-
-      .footer-link {
-        gap: 6px;
-      }
-
-      .footer svg {
-        width: 21px;
-        height: 21px;
+        gap: 10px;
       }
     }
   </style>
 </head>
+
 <body>
   <main class="page">
-    <div class="lock-wrap" aria-hidden="true">
-      <svg viewBox="0 0 204 204" role="img">
-        <circle cx="102" cy="102" r="91" fill="none" stroke="#302B48" stroke-width="11"/>
-        <path d="M102 11 A91 91 0 0 1 193 102" fill="none" stroke="#22D3EE"
-              stroke-width="11" stroke-linecap="round"/>
-        <g fill="#8B5CF6">
-          <path d="M72 85V65c0-16.6 13.4-30 30-30s30 13.4 30 30v20h-13V65c0-9.4-7.6-17-17-17s-17 7.6-17 17v20H72Z"/>
-          <rect x="51" y="78" width="102" height="76" rx="15"/>
-        </g>
-        <circle cx="102" cy="109" r="13" fill="#fff"/>
-        <rect x="97" y="117" width="10" height="22" rx="5" fill="#fff"/>
-      </svg>
+
+    <div class="mark" aria-hidden="true">
+      <span>+</span>
     </div>
 
     <h1 class="headline">
-      Encontre novas
-      <span class="green">oportunidades.</span>
+      Descubra novos
+      <span class="highlight">caminhos.</span>
     </h1>
 
     <p class="subtitle">
-      Informações e oportunidades<br />
-      organizadas em um só lugar<br />
-      para ajudar você a escolher melhor.
+      Conteúdos e possibilidades<br />
+      reunidos em um só lugar<br />
+      para facilitar sua próxima escolha.
     </p>
 
     <div class="small-divider" aria-hidden="true"></div>
 
     <p class="instruction">
-      Clique no botão abaixo para<br />
-      ver as oportunidades disponíveis
+      Acesse abaixo para<br />
+      conhecer as opções disponíveis
     </p>
 
     <button class="access-button" type="button" onclick="acessarPlataforma()">
-      <svg class="shield" viewBox="0 0 49 57" aria-hidden="true">
-        <path d="M24.5 2.5 45 10v16.3c0 13.4-8.4 23.1-20.5 28.2C12.4 49.4 4 39.7 4 26.3V10l20.5-7.5Z"
-              fill="none" stroke="#A78BFA" stroke-width="4"/>
-        <path d="m14.5 28.5 6.5 6.5 13.5-14" fill="none" stroke="#A78BFA"
-              stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span>VER AGORA</span>
+      <span>EXPLORAR AGORA</span>
+      <span class="arrow">→</span>
     </button>
 
     <footer class="footer">
       <div class="footer-link">
-        <svg viewBox="0 0 34 34" aria-hidden="true">
-          <path d="M17 3 29 7.5v9.6c0 7.7-4.8 12.3-12 14.9C9.8 29.4 5 24.8 5 17.1V7.5L17 3Z"
-                fill="none" stroke="currentColor" stroke-width="2.4"/>
-          <path d="m11.5 17 3.5 3.5 7.5-8" fill="none" stroke="currentColor"
-                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
         <span>Privacidade</span>
       </div>
 
       <div class="footer-divider" aria-hidden="true"></div>
 
       <div class="footer-link">
-        <svg viewBox="0 0 34 34" aria-hidden="true">
-          <path d="M9 3.5h11l6 6v21H9z" fill="none" stroke="currentColor" stroke-width="2.4"
-                stroke-linejoin="round"/>
-          <path d="M20 3.5v6h6M13 15h9M13 20h9M13 25h6" fill="none"
-                stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-        </svg>
         <span>Termos de Uso</span>
       </div>
     </footer>
+
   </main>
 
   <script>
-    // ALTERE SOMENTE ESTA LINHA QUANDO QUISER TROCAR O LINK DO BOTÃO
-const LINK_ACAO = "https://elegant-puppy-desenrolando.netlify.app/";
+    const LINK_ACAO = "https://elegant-puppy-desenrolando.netlify.app/";
 
-function acessarPlataforma() {
+    function acessarPlataforma() {
       window.location.href = LINK_ACAO;
     }
   </script>
